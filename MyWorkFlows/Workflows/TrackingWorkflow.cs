@@ -17,7 +17,6 @@ public class TrackingWorkflow
             new(){
                 StartToCloseTimeout = TimeSpan.FromMinutes(1)
             });
-            //await myActivities.LoadTrackingNumbers();
 
 
         var trackingStatus = await Workflow.ExecuteActivityAsync(
@@ -26,7 +25,6 @@ public class TrackingWorkflow
             {
                 StartToCloseTimeout = TimeSpan.FromMinutes(1)
             });
-        //await myActivities.GetTrackingStatus(trackingNumbers);
 
         var status = await Workflow.ExecuteActivityAsync(
             (MyActivities myActivities) => myActivities.UpdateStatus(trackingStatus),
@@ -34,7 +32,6 @@ public class TrackingWorkflow
             {
                 StartToCloseTimeout = TimeSpan.FromMinutes(1)
             });
-        //await myActivities.UpdateStatus(trackingStatus);
         Workflow.Logger.LogInformation("Workflow Completed with Status : {Status}.....w", status);
     }
 }
